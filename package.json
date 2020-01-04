@@ -1,0 +1,27 @@
+{
+  "name": "lambstatus-api",
+  "version": "0.0.1",
+  "description": "An API wrapper for Lambstatus.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PizzaFactory/lambstatus-api.git"
+  },
+  "keywords": [
+    "API",
+    "Lambstatus"
+  ],
+  "author": "Masaki Muranaka <monaka@pizzafactory.jp>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PizzaFactory/lambstatus-api/issues"
+  },
+  "homepage": "https://github.com/PizzaFactory/lambstatus-api#readme",
+  "devDependencies": {
+    "@types/node": "^13.1.4",
+    "typescript": "^3.7.4"
+  }
+}
