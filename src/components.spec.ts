@@ -1,12 +1,15 @@
 import { Components } from './components';
 import { APIv0 } from './v0';
-import { expect } from 'chai';
+import { assert, expect } from 'chai';
 import 'mocha';
 import { API_BASE_DIR, API_KEY } from './config.spec';
 
-console.dir(API_BASE_DIR);
-
 let componentID = '';
+let api: any;
+
+before('create api instance', () => {
+  api = new APIv0(API_BASE_DIR, API_KEY).components;
+});
 
 describe('components', () => {
 
@@ -16,28 +19,42 @@ describe('components', () => {
     });
 
     it('create', async () => {
-        const api = new APIv0(API_BASE_DIR, API_KEY).components;
         const result = await api.create({
           name: 'Website',
           description: 'test',
           status: 'Operational'
         });
+        console.dir(result);
         expect(result.componentID).not.undefined;
-        expect(result.description).equals('Website');
+        expect(result.name).equals('Website');
+        expect(result.description).equals('test');
         expect(result.status).equals('Operational');
         if (result.componentID) {
           componentID = result.componentID;
         }
+        return Promise.resolve();
     });
 
     it('get', async () => {
-        const api = new Components(API_BASE_DIR, API_KEY);
+      try {
         const result = await api.get(componentID);
-        expect(result.componentID).not.undefined;
-        expect(result.description).equals('Website');
-        expect(result.status).equals('Operational');
-        if (result.componentID) {
-          componentID = result.componentID;
-        }
+        assert.fail('Should be railed the exception.');
+      } catch (e) {
+      }
+    });
+
+    it('update', async () => {
+      const desc = 'foo';
+      const result = await api.update(componentID, {
+        description: desc
+      });
+      expect(result.description).equals(desc);
+      return true;
+    });
+
+    it('delete', async () => {
+      const result = await api.update(componentID);
+      expect(result.componentID).equals(componentID);
+      return true;
     });
 });

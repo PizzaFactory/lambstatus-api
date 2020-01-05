@@ -10,6 +10,10 @@ export interface Component {
 
 export class Components extends Common<Component> {
   constructor(baseURL: string, apiKey: string) {
-    super(baseURL + 'components/', apiKey);
+    super(baseURL + '/components', apiKey);
+  }
+
+  async get(_: string): Promise<Component> {
+    throw new Error('Not supported.');
   }
 }

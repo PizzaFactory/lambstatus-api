@@ -10,12 +10,13 @@ export class APIv0 {
   private apiKey_: string;
 
   constructor(baseURL: string, apiKey: string) {
-    this.baseURL_ = baseURL + '/v0/'
+    this.baseURL_ = baseURL + (baseURL.endsWith('/') ? '' : '/') + 'v0'
     this.apiKey_ = apiKey;
   }
 
   public get components(): Components {
     if (!this.components_) {
+    console.dir(this.baseURL_);
       this.components_ = new Components(this.baseURL_, this.apiKey_);
     }
     return this.components_;
