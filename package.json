@@ -1,5 +1,5 @@
 {
-  "name": "lambstatus-api",
+  "name": "@pizzafactory/lambstatus-api",
   "version": "0.0.1",
   "description": "An API wrapper for Lambstatus.",
   "main": "lib/lambstatus.js",
