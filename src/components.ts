@@ -1,7 +1,15 @@
 import { Common } from './common';
 
-export class Components extends Common {
+export interface Component {
+    componentID?: string,
+    name?: string,
+    description?: string,
+    status?: string,
+    order?: number
+}
+
+export class Components extends Common<Component> {
   constructor(baseURL: string, apiKey: string) {
-    super(baseURL + '/components', apiKey);
+    super(baseURL + 'components/', apiKey);
   }
 }

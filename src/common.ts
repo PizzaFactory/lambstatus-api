@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-export abstract class Common {
-    entries_: any[]|undefined;
+export abstract class Common<T> {
+    entries_: Array<T>|undefined;
     conn: AxiosInstance;
 
     constructor(readonly baseURL: string, readonly apiKey: string) {
@@ -13,22 +13,26 @@ export abstract class Common {
         })
     }
 
-  async list(forceUpdate: boolean) {
+  async list(forceUpdate: boolean): Promise<Array<T>> {
     if (forceUpdate === true || !(this.entries_)) {
-      this.entries_ = Array.from((await this.conn.get('')).data);
+      this.entries_ = Array.from<T>((await this.conn.get('')).data);
     }
     return this.entries_;
   }
 
-  async create(content: any) {
+  async get(id: string): Promise<T> {
+      return (await this.conn.get(id)).data;
+  }
+
+  async create(content: T): Promise<T> {
       return (await this.conn.post('', content)).data;
   }
 
-  async update(id: string, content: any) {
+  async update(id: string, content: T): Promise<T> {
       return (await this.conn.patch(id, content)).data;
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<T> {
       return (await this.conn.delete(id)).data;
   }
 }
