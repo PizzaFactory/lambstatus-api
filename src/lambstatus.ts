@@ -1,14 +1,19 @@
 import { APIv0 } from './v0';
 
 export class LambStatusAPI {
-  baseURL: string;
-  apiKey: string;
-  constructor(readonly baseURL_: string, readonly apiKey_: string) {
-    this.baseURL = baseURL_;
-    this.apiKey = apiKey_;
+  private baseURL_: string;
+  private apiKey_: string;
+  private v0_: APIv0|undefined;
+
+  constructor(readonly baseURL: string, readonly apiKey: string) {
+    this.baseURL_ = baseURL;
+    this.apiKey_ = apiKey;
   }
 
   get v0() {
-    return new APIv0(this.baseURL, this.apiKey);
+    if (!this.v0_) {
+      this.v0_ = new APIv0(this.baseURL_, this.apiKey_);
+    }
+    return this.v0_;
   }
 }

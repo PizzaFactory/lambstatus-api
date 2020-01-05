@@ -16,7 +16,6 @@ export class APIv0 {
 
   public get components(): Components {
     if (!this.components_) {
-    console.dir(this.baseURL_);
       this.components_ = new Components(this.baseURL_, this.apiKey_);
     }
     return this.components_;

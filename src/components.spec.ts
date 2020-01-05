@@ -1,14 +1,14 @@
+import { LambStatusAPI } from './lambstatus';
 import { Components } from './components';
-import { APIv0 } from './v0';
 import { assert, expect } from 'chai';
 import 'mocha';
-import { API_BASE_DIR, API_KEY } from './config.spec';
+import { API_BASE_DIR, API_KEY } from '../test/config.spec';
 
 let componentID = '';
 let api: any;
 
 before('create api instance', () => {
-  api = new APIv0(API_BASE_DIR, API_KEY).components;
+  api = new LambStatusAPI(API_BASE_DIR, API_KEY).v0.components;
 });
 
 describe('components', () => {
@@ -24,7 +24,6 @@ describe('components', () => {
           description: 'test',
           status: 'Operational'
         });
-        console.dir(result);
         expect(result.componentID).not.undefined;
         expect(result.name).equals('Website');
         expect(result.description).equals('test');
@@ -32,7 +31,7 @@ describe('components', () => {
         if (result.componentID) {
           componentID = result.componentID;
         }
-        return Promise.resolve();
+        return true;
     });
 
     it('get', async () => {
