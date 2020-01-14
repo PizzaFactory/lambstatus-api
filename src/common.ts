@@ -14,7 +14,7 @@ export abstract class Common<T> {
     });
   }
 
-  async list(forceUpdate: boolean): Promise<Array<T>> {
+  async list(forceUpdate = false): Promise<Array<T>> {
     if (forceUpdate === true || !(this.entries_)) {
       this.entries_ = Array.from<T>((await this.conn.get('')).data);
     }
