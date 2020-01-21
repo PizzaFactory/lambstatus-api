@@ -20,6 +20,6 @@ export interface IncidentUpdate {
 
 export class Incidents extends Common<Incident> {
   constructor(baseURL: string, apiKey: string) {
-    super(baseURL + 'incidents', apiKey);
+    super(baseURL + '/incidents', apiKey);
   }
 }
