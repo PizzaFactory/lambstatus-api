@@ -5,7 +5,7 @@
   "main": "lib/lambstatus.js",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register {test,src}/**/*.spec.ts"
+    "test": "mocha --timeout=10000 -r ts-node/register {test,src}/**/*.spec.ts"
   },
   "repository": {
     "type": "git",

@@ -21,6 +21,6 @@ export interface MaintenanceUpdate {
 }
 export class Maintenances extends Common<Maintenance> {
   constructor(baseURL: string, apiKey: string) {
-    super(baseURL + 'maintenances/', apiKey);
+    super(baseURL + '/maintenances', apiKey);
   }
 }
